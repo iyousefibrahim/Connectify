@@ -5,11 +5,13 @@ import { NotfoundComponent } from './Components/notfound/notfound.component';
 import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { TimelineComponent } from './Components/timeline/timeline.component';
+import { loggedinGuard } from './Core/Guards/loggedin.guard';
+import { authGuard } from './Core/Guards/auth.guard';
 
 export const routes: Routes = [
 
     {
-        path: "", component: AuthLayoutComponent,
+        path: "", component: AuthLayoutComponent, canActivate: [loggedinGuard],
         children: [
             { path: "", redirectTo: "login", pathMatch: "full" },
             { path: "login", component: LoginComponent, title: "Login" },
@@ -17,7 +19,7 @@ export const routes: Routes = [
         ]
     },
     {
-        path: "", component: MainLayoutComponent,
+        path: "", component: MainLayoutComponent, canActivate: [authGuard],
         children: [
             { path: "home", component: TimelineComponent, title: "Home" },
         ]

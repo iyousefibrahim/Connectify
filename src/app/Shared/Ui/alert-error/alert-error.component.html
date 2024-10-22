@@ -1,0 +1,21 @@
+@if(Form.get(FormControl)?.errors && Form.get(FormControl)?.touched){
+
+    @if(Form.get(FormControl)?.hasError('required') && Form.get(FormControl)?.touched){
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">This Input Is Required!</span></p>
+    }
+    @else if(Form.get(FormControl)?.hasError('minlength') && Form.get(FormControl)?.touched){
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Input Must Be Longer Than 3 Chars!</span></p>
+    }
+    @else if(Form.get(FormControl)?.hasError('maxlength') && Form.get(FormControl)?.touched){
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Input Must Be Less Than 20 Chars!</span></p>
+    }
+    @else if(Form.get(FormControl)?.hasError('email') && Form.get(FormControl)?.touched){
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Email Is Invalid!</span></p>
+    }
+    @else if(FormControl === 'password' && Form.get(FormControl)?.hasError('pattern') && Form.get(FormControl)?.touched){
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one digit, and one special character (e.g., #?!&#64;$%^&*-)</span></p>
+    }
+}
+@else if(FormControl === 'rePassword' && Form.get(FormControl)?.touched && Form.hasError('mismatch')) {
+    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Invalid rePassword</span></p>
+}
