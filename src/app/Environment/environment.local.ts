@@ -1,0 +1,1 @@
+export const BaseUrl = "https://linked-posts.routemisr.com/";
