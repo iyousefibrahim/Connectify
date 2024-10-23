@@ -1,11 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { PostsService } from '../../../Core/Services/posts.service';
 import { IPost } from '../../../Core/Interfaces/ipost';
 import { DatePipe } from '@angular/common';
 import { CommentsComponent } from "../comments/comments.component";
-
-
-
+import { UsersService } from '../../../Core/Services/users.service';
 
 @Component({
   selector: 'app-post',
@@ -15,16 +13,22 @@ import { CommentsComponent } from "../comments/comments.component";
   styleUrl: './post.component.scss'
 })
 export class PostComponent implements OnInit {
-  private readonly _PostsService = inject(PostsService);
-  postsData: IPost[] = [];
+  private readonly _UsersService = inject(UsersService);
+  @Input({ required: true }) postsData!: IPost[];
 
-
-
-  ngOnInit(): void {
-    this._PostsService.GetAllPosts().subscribe({
+  userID: string = "";
+  
+  getUserId() {
+    this._UsersService.GetUserData().subscribe({
       next: (data) => {
-        this.postsData = data.posts;
+        console.log(data);
+        this.userID = data.user._id;
       }
-    });
+    })
   }
+  
+  ngOnInit(): void {
+    this.getUserId()
+  }
+
 }
