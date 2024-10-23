@@ -7,10 +7,10 @@
                     
                     <div class="flex w-[90%]  items-center gap-x-2">
                         @if(comment.commentCreator.photo !== 'https://linked-posts.routemisr.com/uploads/undefined'){
-                            <img class="w-10" [src]="comment.commentCreator.photo" alt="Person">
+                            <img class="w-10" [src]="comment.commentCreator.photo" alt="Profile Photo">
                         }
                         @else {
-                            <img class="w-10 rounded-full" src="./assets/images/nophoto.jpg" alt="Person">
+                            <img class="w-10 rounded-full" src="./assets/images/default-profile.png" alt="Default Profile Photo">
                         }
                         <p>{{comment.commentCreator.name}}</p>
                         <p>{{comment.createdAt| date}}</p>

@@ -15,7 +15,7 @@ export class CreatePostComponent {
   private readonly _PostsService = inject(PostsService);
   private readonly _ToastrService = inject(ToastrService);
   savedFile?: File; 
-  content!: string;
+  content: string = "";
  
   changeImage(e: Event): void {
     const input = e.target as HTMLInputElement;

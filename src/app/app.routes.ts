@@ -7,6 +7,7 @@ import { RegisterComponent } from './Components/register/register.component';
 import { TimelineComponent } from './Components/timeline/timeline.component';
 import { loggedinGuard } from './Core/Guards/loggedin.guard';
 import { authGuard } from './Core/Guards/auth.guard';
+import { ProfileComponent } from './Components/profile/profile.component';
 
 export const routes: Routes = [
 
@@ -22,6 +23,7 @@ export const routes: Routes = [
         path: "", component: MainLayoutComponent, canActivate: [authGuard],
         children: [
             { path: "home", component: TimelineComponent, title: "Home" },
+            { path: "profile", component: ProfileComponent, title: "My Profile" }
         ]
     },
     { path: "**", component: NotfoundComponent, title: "NotFound 404!" }
