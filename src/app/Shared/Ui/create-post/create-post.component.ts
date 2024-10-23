@@ -1,6 +1,7 @@
-import { Component, inject} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PostsService } from '../../../Core/Services/posts.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-post',
@@ -12,24 +13,29 @@ import { PostsService } from '../../../Core/Services/posts.service';
 export class CreatePostComponent {
 
   private readonly _PostsService = inject(PostsService);
-  savedFile!: File;
-  content! : string;
+  private readonly _ToastrService = inject(ToastrService);
+  savedFile?: File; 
+  content!: string;
  
-  changeImage(e : Event){
-    const Input = e.target as HTMLInputElement;
-    if(Input.files && Input.files.length > 0){
-      this.savedFile = Input.files[0];
+  changeImage(e: Event): void {
+    const input = e.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.savedFile = input.files[0];
     }
   }
 
-  CreatePost() : void {
+  CreatePost(): void {
     const formData = new FormData();
-    formData.append('body',this.content);
-    formData.append('image', this.savedFile);
+    formData.append('body', this.content);
+
+    if (this.savedFile) {
+      formData.append('image', this.savedFile);
+    }
+
     this._PostsService.CreatePost(formData).subscribe({
       next: (data) => {
-        console.log(data);
-      }
-    })
+        this._ToastrService.success("Your post has been successfully created!");
+      },
+    });
   }
 }
