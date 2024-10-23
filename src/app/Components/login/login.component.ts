@@ -22,6 +22,7 @@ export class LoginComponent {
 
   isLoading: boolean = false;
   errorMsg: string = "";
+  loginSuccess : string = "";
 
   loginForm: FormGroup = this._FormBuilder.group({
     email: [null, RegisterValidator.email],
@@ -34,6 +35,7 @@ export class LoginComponent {
       this._UsersService.SignIn(this.loginForm.value).subscribe({
         next: (res) => {
           console.log(res);
+          this.loginSuccess = res.message;
           this.isLoading = false;
           localStorage.setItem("userToken", res.token);
           this._ToastrService.success("Login successful!")

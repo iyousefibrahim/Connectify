@@ -1,0 +1,57 @@
+<section class="flex flex-col gap-4">
+
+    <div class="max-h-72 overflow-auto">
+        @for (comment of commentData; track comment._id) {
+            
+            <div class="flex flex-wrap my-5 items-center border border-slate-400 border-opacity-50 bg-slate-200 p-4 px-6 rounded-lg justify-between gap-y-4">
+                    
+                    <div class="flex w-[90%]  items-center gap-x-2">
+                        @if(comment.commentCreator.photo !== 'https://linked-posts.routemisr.com/uploads/undefined'){
+                            <img class="w-10" [src]="comment.commentCreator.photo" alt="Person">
+                        }
+                        @else {
+                            <img class="w-10 rounded-full" src="./assets/images/nophoto.jpg" alt="Person">
+                        }
+                        <p>{{comment.commentCreator.name}}</p>
+                        <p>{{comment.createdAt| date}}</p>
+                    </div>
+                    <div>
+                    <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block bg-gray-100 text-gray-500 dark:text-gray-400 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+                    <span class="sr-only">Open dropdown</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                        <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+                    </svg>
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                        <ul class="py-2" aria-labelledby="dropdownButton">
+                        <li>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                        </li>
+                        </ul>
+                    </div>
+                    </div>
+                    <p class="text-slate-500 font-semibold">{{comment.content}}</p>
+            </div>
+                
+        }
+    </div>
+
+
+    <form [formGroup]="commentForm" (ngSubmit)="commentSubmit()">
+        <label for="chat" class="sr-only">Your message</label>
+        <div class="flex items-center justify-between m-0 py-2 gap-x-2 rounded-lg">
+            <textarea formControlName="content" id="chat" rows="1" class="block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..."></textarea>
+                <button [disabled]="commentForm.invalid" type="submit" class="inline-flex justify-center p-2 disabled:text-slate-400 disabled:cursor-not-allowed text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
+                <svg class="w-5 h-5 rotate-90 rtl:-rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                    <path d="m17.914 18.594-8-18a1 1 0 0 0-1.828 0l-8 18a1 1 0 0 0 1.157 1.376L8 18.281V9a1 1 0 0 1 2 0v9.281l6.758 1.689a1 1 0 0 0 1.156-1.376Z"/>
+                </svg>
+                <span class="sr-only">Send message</span>
+            </button>
+        </div>
+    </form>
+
+</section>

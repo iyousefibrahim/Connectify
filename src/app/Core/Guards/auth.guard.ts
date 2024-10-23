@@ -7,7 +7,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   if (localStorage.getItem('userToken') !== null) {
     return true;
   } else {
-    _Router.navigate(["/signin"]);
+    _Router.navigate(["/login"]);
     return false;
   }
 

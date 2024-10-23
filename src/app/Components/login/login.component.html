@@ -16,7 +16,7 @@
     </div>
 
     
-    @if(errorMsg){
+    @if(errorMsg && !loginSuccess){
         <div class="text-red-500 text-lg">{{errorMsg}}</div>
     }
 

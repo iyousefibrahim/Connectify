@@ -5,12 +5,13 @@ import { provideToastr } from 'ngx-toastr';
 
 
 import { routes } from './app.routes';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { headersInterceptor } from './Core/Interceptors/headers.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(), withInterceptors([headersInterceptor])),
     provideAnimations(),
     provideToastr(),
   ]
