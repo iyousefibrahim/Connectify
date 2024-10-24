@@ -1,22 +1,22 @@
 <app-nav></app-nav>
-<section class="max-w-screen-xl h-lvh flex flex-col justify-center items-center">
-     <div class="bg-white border rounded-lg border-gray-200 p-4">
-        <h2 class="text-3xl">User Information:</h2>
 
-    <div class="flex justify-between flex-wrap">
-        <div class=" flex justify-center md:w-[40%] w-full">
+<section class="mt-[70px]">
+    <div class="w-full bg-slate-100 flex justify-evenly flex-wrap">
+        
+        <div class="flex justify-center md:w-[20%] w-full bg-blue-400 rounded-full">
             <img [src]="userData.photo" alt="">
         </div>
-        <div class="flex flex-col justify-around md:w-[60%] w-full">
-            <p class="text-2xl">Name: {{userData.name}}</p>
-            <p class="text-2xl">Email: {{userData.email}}</p>
-            <p class="text-2xl">Gender: {{userData.gender}}</p>
-            <p class="text-2xl">Account Created At: {{userData.createdAt | date}}</p>
-        </div>
-    </div> 
-     </div>
 
+        <div class="flex flex-col flex-wrap items-center md:items-start justify-center md:justify-evenly md:w-[60%] w-full">
+            
+                <p class="text-2xl">Name: {{userData.name}}</p>
+                <p class="text-2xl">Email: {{userData.email}}</p>
+                <p class="text-2xl">Gender: {{userData.gender}}</p>
+            
+        </div>
+
+    </div>
 </section>
 
-<h2 class="text-center text-3xl">My Posts:</h2>
+<h2 class="text-center text-3xl font-semibold mt-5">My Posts:</h2>
 <app-post [postsData]="userPosts" [totalItems]="totalItems"></app-post>

@@ -4,13 +4,13 @@ import { RegisterValidator } from '../../Shared/Validators/register.validators';
 import { confirmPassword } from '../../Shared/Utils/confirmpassword';
 import { AlertErrorComponent } from "../../Shared/Ui/alert-error/alert-error.component";
 import { UsersService } from '../../Core/Services/users.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, AlertErrorComponent],
+  imports: [ReactiveFormsModule, AlertErrorComponent,RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -38,7 +38,6 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       this._UsersService.SignUp(this.registerForm.value).subscribe({
         next: (res) => {
-          console.log(res);
           this.isLoading = false;
           this._ToastrService.success("You have successfully registered! Enjoy your experience!")
           setTimeout(() => {

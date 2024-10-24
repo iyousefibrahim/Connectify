@@ -51,10 +51,11 @@
 </div>
 }
 
-<pagination-controls  id="post"
+<pagination-controls id="post"
                       (pageChange)="pageChanged($event)"
                       (pageBoundsCorrection)="pageChanged($event)"
                       previousLabel="Previous"
+                      [maxSize]= 5
                       nextLabel="Next"
                       screenReaderPaginationLabel="Pagination"
                       screenReaderPageLabel="page"

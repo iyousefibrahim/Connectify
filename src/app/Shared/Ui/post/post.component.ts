@@ -17,6 +17,7 @@ export class PostComponent implements OnInit {
   private readonly _UsersService = inject(UsersService);
   private readonly _PostsService = inject(PostsService);
   currentPage : Signal<number> = computed(this._PostsService.page);
+  maxsize : string = "20";
 
   @Input({ required: true }) postsData!: IPost[];
   @Input({ required: true }) totalItems!: any;
@@ -26,7 +27,6 @@ export class PostComponent implements OnInit {
   getUserId() {
     this._UsersService.GetUserData().subscribe({
       next: (data) => {
-        console.log(data);
         this.userID = data.user._id;
       }
     })

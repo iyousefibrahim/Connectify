@@ -34,7 +34,6 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this._UsersService.SignIn(this.loginForm.value).subscribe({
         next: (res) => {
-          console.log(res);
           this.loginSuccess = res.message;
           this.isLoading = false;
           localStorage.setItem("userToken", res.token);
