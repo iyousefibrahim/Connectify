@@ -16,6 +16,7 @@ export class TimelineComponent {
   private readonly _PostsService = inject(PostsService);
   currentPage : Signal<number> = computed(this._PostsService.page);
   postsData : IPost[] = [];
+  totalItems! : number;
 
  
   constructor() {
@@ -32,6 +33,7 @@ export class TimelineComponent {
     this._PostsService.GetAllPosts(this.currentPage()).subscribe({
       next: (data) => {
         this.postsData = data.posts;
+        this.totalItems = data.paginationInfo.total;
       }
     });
   }

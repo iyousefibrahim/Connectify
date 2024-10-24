@@ -19,6 +19,7 @@ export class PostComponent implements OnInit {
   currentPage : Signal<number> = computed(this._PostsService.page);
 
   @Input({ required: true }) postsData!: IPost[];
+  @Input({ required: true }) totalItems!: any;
   
   userID: string = "";
 

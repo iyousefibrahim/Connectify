@@ -19,17 +19,20 @@ export class ProfileComponent implements OnInit {
   private readonly _PostsService = inject(PostsService);
   userData: IUser = {} as IUser;
   userPosts: IPost[] = [];
+  totalItems! : number;
 
   ngOnInit(): void {
+    
     this._UsersService.GetUserData().subscribe({
       next: (res) => {
         this.userData = res.user;
       }
     })
+
     this._PostsService.GetUserPosts().subscribe({
       next: (res) => {
         this.userPosts = res.posts;
-        console.log(res);
+        this.totalItems = res.paginationInfo.total;
       }
     })
 
