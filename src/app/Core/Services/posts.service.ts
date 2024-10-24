@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BaseUrl } from '../../Environment/environment.local';
 import { HttpClient } from '@angular/common/http';
@@ -7,16 +7,14 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PostsService {
-
-  constructor() { }
   private readonly _HttpClient = inject(HttpClient);
-
+  page: WritableSignal<number> = signal(1);
   CreatePost(data: object): Observable<any> {
     return this._HttpClient.post(BaseUrl + "posts", data);
   }
 
-  GetAllPosts(): Observable<any> {
-    return this._HttpClient.get(BaseUrl + "posts?limit=50");
+  GetAllPosts(page : any): Observable<any> {
+    return this._HttpClient.get(BaseUrl + `posts?limit=50&page=${page}`);
   }
 
   //User ID Req!
