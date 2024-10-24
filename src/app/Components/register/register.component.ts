@@ -48,9 +48,7 @@ export class RegisterComponent {
         error:(err)=>{
           this.errorMsg = err.error.error;
           this._ToastrService.error(this.errorMsg);
-          
         }
-        
       })
     }
   }
