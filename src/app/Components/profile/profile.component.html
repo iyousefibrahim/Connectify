@@ -3,11 +3,11 @@
      <div class="bg-white border rounded-lg border-gray-200 p-4">
         <h2 class="text-3xl">User Information:</h2>
 
-    <div class="flex justify-between">
-        <div class=" flex justify-center w-[40%]">
+    <div class="flex justify-between flex-wrap">
+        <div class=" flex justify-center md:w-[40%] w-full">
             <img [src]="userData.photo" alt="">
         </div>
-        <div class="flex flex-col justify-around w-[60%]">
+        <div class="flex flex-col justify-around md:w-[60%] w-full">
             <p class="text-2xl">Name: {{userData.name}}</p>
             <p class="text-2xl">Email: {{userData.email}}</p>
             <p class="text-2xl">Gender: {{userData.gender}}</p>

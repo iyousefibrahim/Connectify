@@ -21,18 +21,18 @@ export class PostsService {
 
   //User ID Req!
   GetUserPosts(): Observable<any> {
-    return this._HttpClient.get(BaseUrl + "users/664bcf3e33da217c4af21f00/posts?limit=2");
+    return this._HttpClient.get(BaseUrl + "users/664bcf3e33da217c4af21f00/posts?limit=100");
   }
 
   GetSinglePost(postId: string): Observable<any> {
     return this._HttpClient.get(BaseUrl + `posts/${postId}`);
   }
 
-  UpdatePost(postId: string): Observable<any> {
-    return this._HttpClient.get(BaseUrl + `posts/${postId}`);
+  UpdatePost(postId: string,data : object): Observable<any> {
+    return this._HttpClient.put(BaseUrl + `posts/${postId}`,data);
   }
 
   DeletePost(postId: string): Observable<any> {
-    return this._HttpClient.get(BaseUrl + `posts/${postId}`);
+    return this._HttpClient.delete(BaseUrl + `posts/${postId}`);
   }
 }

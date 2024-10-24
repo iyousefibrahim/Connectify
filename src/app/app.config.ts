@@ -1,5 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling, withViewTransitions } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
@@ -10,7 +10,7 @@ import { loadingInterceptor } from './Core/Interceptors/loading.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
+    provideRouter(routes,withViewTransitions(), withInMemoryScrolling({ scrollPositionRestoration: "top" })),
     provideHttpClient(withFetch(), withInterceptors([headersInterceptor,loadingInterceptor])),
     provideAnimations(),
     provideToastr(),

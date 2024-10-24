@@ -11,7 +11,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './create-post.component.scss'
 })
 export class CreatePostComponent {
-
   private readonly _PostsService = inject(PostsService);
   private readonly _ToastrService = inject(ToastrService);
   savedFile?: File; 

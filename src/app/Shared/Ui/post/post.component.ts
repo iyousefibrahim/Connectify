@@ -1,5 +1,4 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { PostsService } from '../../../Core/Services/posts.service';
 import { IPost } from '../../../Core/Interfaces/ipost';
 import { DatePipe } from '@angular/common';
 import { CommentsComponent } from "../comments/comments.component";
