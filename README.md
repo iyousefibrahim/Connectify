@@ -8,7 +8,7 @@
 - [Technologies Used](#technologies-used)
 
 ## Demo
-Link to the live demo : https://connectify-swart-three.vercel.app/
+Link to the live demo: [Connectify](https://connectify-swart-three.vercel.app/)
 
 ## Features
 
@@ -19,6 +19,7 @@ Link to the live demo : https://connectify-swart-three.vercel.app/
 - **Pagination**: Efficiently browse through posts using pagination.
 - **Loading Spinner**: Provides feedback during data loading processes.
 - **Responsive Design**: Built with responsive components from **Flowbite** for optimal display on all devices.
+- **Notifications**: User-friendly notifications using **ngx-toastr** for success and error messages.
 
 ## Technologies Used
 
@@ -27,5 +28,5 @@ Link to the live demo : https://connectify-swart-three.vercel.app/
 - **UI Framework**: Flowbite (Tailwind CSS)
 - **Ngx-Pagination**: Easily implement pagination for large datasets.
 - **Ngx-Spinner**: Display loading indicators during asynchronous operations.
+- **Ngx-Toastr**: Provide notifications for user actions and events.
 - **RxJS**: Manages asynchronous operations, including user actions like posting and commenting.
-
