@@ -1,7 +1,6 @@
 <app-nav></app-nav>
 
 <section class="mt-[70px]">
-
     <div class="w-full bg-slate-100 flex justify-evenly flex-wrap gap-y-2">
 
        <div class="w-[50%] justify-center flex gap-x-2 items-center mt-3">
@@ -27,5 +26,17 @@
     </div>
 </section>
 
-<h2 class="text-center text-3xl font-semibold mt-5">My Posts:</h2>
-<app-post [postsData]="userPosts" [totalItems]="totalItems"></app-post>
+@if (userPosts.length != 0) {
+    <h2 class="text-center text-3xl font-semibold mt-14">My Posts:</h2>
+    <app-post [postsData]="userPosts" [totalItems]="totalItems"></app-post>
+}   
+@else {
+    <div class="py-14">
+        <p class="text-center text-3xl my-10">No Posts Found!</p>
+        <div class="justify-center flex gap-x-2 items-center mt-3">
+            <i routerLink="/home" class="fa-solid fa-arrow-left bg-blue-500 hover:-translate-x-1 transition-transform cursor-pointer p-2 rounded-full text-white"></i>
+            <p routerLink="/home" class="cursor-pointer text-1xl font-bold">Add Posts Now!</p>
+        </div>
+    </div>
+} 
+    

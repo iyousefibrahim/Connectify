@@ -22,6 +22,7 @@ export class RegisterComponent implements OnDestroy {
   private readonly _Router = inject(Router);
   private readonly _ToastrService = inject(ToastrService);
   unSubscribe: Subscription = new Subscription();
+  registerSuccess: string = "";
 
   isLoading: boolean = false;
   errorMsg: string = "";
@@ -40,6 +41,7 @@ export class RegisterComponent implements OnDestroy {
       this.isLoading = true;
       this.unSubscribe.add(this._UsersService.SignUp(this.registerForm.value).subscribe({
         next: (res) => {
+          this.registerSuccess = res.message;
           this.isLoading = false;
           this._ToastrService.success("You have successfully registered! Enjoy your experience!")
           setTimeout(() => {
