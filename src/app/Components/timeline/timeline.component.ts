@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, OnDestroy, OnInit, Signal} from '@angular/core';
+import { Component, computed, effect, ElementRef, HostListener, inject, OnDestroy, OnInit, Signal, ViewChild } from '@angular/core';
 import { NavComponent } from "../nav/nav.component";
 import { PostComponent } from "../../Shared/Ui/post/post.component";
 import { CreatePostComponent } from "../../Shared/Ui/create-post/create-post.component";
@@ -15,19 +15,37 @@ import { Subscription } from 'rxjs';
 })
 export class TimelineComponent implements OnInit, OnDestroy {
   private readonly _PostsService = inject(PostsService);
-  currentPage : Signal<number> = computed(this._PostsService.page);
-  postsData : IPost[] = [];
-  totalItems! : number;
-  unSubscribe: Subscription = new Subscription(); 
+  currentPage: Signal<number> = computed(this._PostsService.page);
+  postsData: IPost[] = [];
+  totalItems!: number;
+  unSubscribe: Subscription = new Subscription();
+  showbtn: boolean = false;
 
- 
+  @ViewChild('btntop') btnTop!: ElementRef;
+
+  @HostListener('window:scroll')
+  onScroll() {
+    if (window.scrollY >= 100) {
+      this.showbtn = true;
+    } else {
+      this.showbtn = false;
+    }
+  }
+
+  @HostListener('click')
+  onClick() {
+    if (this.btnTop.nativeElement) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
   constructor() {
-    effect(()=>{
+    effect(() => {
       this._PostsService.GetAllPosts(this.currentPage()).subscribe({
-      next: (data) => {
-        this.postsData = data.posts;
-      }
-    });
+        next: (data) => {
+          this.postsData = data.posts;
+        }
+      });
     })
   }
 

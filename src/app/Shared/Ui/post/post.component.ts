@@ -1,4 +1,4 @@
-import { Component, computed, inject, Input, OnDestroy, OnInit, Signal, signal, WritableSignal } from '@angular/core';
+import { Component, computed, inject, Input, OnDestroy, OnInit, Signal } from '@angular/core';
 import { IPost } from '../../../Core/Interfaces/ipost';
 import { DatePipe } from '@angular/common';
 import { CommentsComponent } from "../comments/comments.component";
@@ -14,18 +14,16 @@ import { Subscription } from 'rxjs';
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'
 })
-export class PostComponent implements OnInit , OnDestroy {
+export class PostComponent implements OnInit, OnDestroy {
   private readonly _UsersService = inject(UsersService);
   private readonly _PostsService = inject(PostsService);
-  currentPage : Signal<number> = computed(this._PostsService.page);
-  maxsize : string = "20";
+  currentPage: Signal<number> = computed(this._PostsService.page);
+  maxsize: string = "20";
   userID: string = "";
   @Input({ required: true }) postsData!: IPost[];
   @Input({ required: true }) totalItems!: any;
-  unSubscribe: Subscription = new Subscription(); 
+  unSubscribe: Subscription = new Subscription();
   
-
-
   getUserId() {
     this.unSubscribe.add(this._UsersService.GetUserData().subscribe({
       next: (data) => {
