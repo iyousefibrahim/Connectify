@@ -32,12 +32,13 @@ export class TimelineComponent implements OnInit, OnDestroy {
     }
   }
 
-  @HostListener('click')
-  onClick() {
-    if (this.btnTop.nativeElement) {
+  @HostListener('click', ['$event'])
+  onClick(e: MouseEvent) {
+    if (e.target === this.btnTop.nativeElement || this.btnTop.nativeElement.contains(e.target as Node)) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
+
 
   constructor() {
     effect(() => {

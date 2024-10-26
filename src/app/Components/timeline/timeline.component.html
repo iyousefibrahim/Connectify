@@ -2,9 +2,7 @@
     <app-nav></app-nav>
     <app-create-post></app-create-post>
     @if (showbtn) {
-    <div #btntop>
-        <i  class="fa-solid fa-up-long bg-blue-500 p-4 px-[1.2rem] text-white rounded-full fixed bottom-7 cursor-pointer right-10"></i>
-    </div>
+     <i  #btntop class="fa-solid fa-up-long bg-blue-500 p-4 px-[1.2rem] text-white rounded-full fixed bottom-7 cursor-pointer right-10"></i>
     }
     <app-post [postsData]="postsData" [totalItems]="totalItems"></app-post>
 </main>
