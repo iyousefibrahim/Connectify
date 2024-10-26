@@ -29,8 +29,8 @@
 
     <div class="relative z-0 w-full group">
         <input [ngClass]="{
-            'focus:border-red-600 , invalid:border-red-600': registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty),
-            'focus:border-green-400 , valid:border-green-400': !registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)
+            'focus:border-red-600 , invalid:border-red-600 , border-red-600': registerForm.get('password')?.errors && (registerForm.get('password')?.dirty  || registerForm.get('password')?.touched  ),
+            'focus:border-green-400 , valid:border-green-400 , border-green-400': !registerForm.get('password')?.errors && (registerForm.get('password')?.dirty  || registerForm.get('password')?.touched )
         }" data-popover-target="popover-password" data-popover-placement="bottom-end" formControlName="password" type="password" name="floating_password" id="floating_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
         <label [ngClass]="{
             ' invalid:text-red-600 , peer-focus:text-red-600 , text-red-600': registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty),
@@ -68,16 +68,31 @@
     <div data-popper-arrow></div>
 
     <div class="relative z-0 w-full group">
-        <input [ngClass]="{
-            'focus:border-red-600 , invalid:border-red-600 , border-red-600': registerForm.hasError('mismatch') && registerForm.get('rePassword')?.dirty || registerForm.get('rePassword')?.touched ,
-            'focus:border-green-400 , valid:border-green-400 , border-green-400': !registerForm.hasError('mismatch') && registerForm.get('rePassword')?.dirty
-        }" formControlName="rePassword" type="password" name="repeat_password" id="floating_repeat_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-        <label [ngClass]="{
-            'invalid:text-red-600 , peer-focus:text-red-600 , text-red-600': registerForm.hasError('mismatch') && registerForm.get('rePassword')?.dirty || registerForm.get('rePassword')?.touched,
-            'valid:text-green-400 , peer-focus:text-green-400 , text-green-400': !registerForm.hasError('mismatch') && registerForm.get('rePassword')?.dirty
-        }" for="floating_repeat_password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm password</label>
-        <app-alert-error [Form]="registerForm" FormControl="rePassword"></app-alert-error>
-    </div>
+    <input 
+        [ngClass]="{
+            'focus:border-red-600 border-red-600': registerForm.hasError('mismatch') && (registerForm.get('rePassword')?.dirty || registerForm.get('rePassword')?.touched),
+            'focus:border-green-400 border-green-400': !registerForm.hasError('mismatch') && (registerForm.get('rePassword')?.dirty || registerForm.get('rePassword')?.touched)
+        }" 
+        formControlName="rePassword" 
+        type="password" 
+        name="repeat_password" 
+        id="floating_repeat_password" 
+        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+        placeholder=" " 
+        required 
+    />
+    <label 
+        [ngClass]="{
+            'text-red-600 , focus:text-red-600 , peer-focus:text-red-600': registerForm.hasError('mismatch') && (registerForm.get('rePassword')?.dirty || registerForm.get('rePassword')?.touched),
+            'text-green-400 , focus:text-green-400 , peer-focus:text-green-400': !registerForm.hasError('mismatch') && (registerForm.get('rePassword')?.dirty || registerForm.get('rePassword')?.touched)
+        }" 
+        for="floating_repeat_password" 
+        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+    >
+        Confirm Password
+    </label>
+    <app-alert-error [Form]="registerForm" FormControl="rePassword"></app-alert-error>
+</div>
 
     <div class="relative max-w-sm">
         <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
