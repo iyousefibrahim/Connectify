@@ -1,8 +1,16 @@
 <app-nav></app-nav>
 
 <section class="mt-[70px]">
-    <div class="w-full bg-slate-100 flex justify-evenly flex-wrap">
-        
+
+    <div class="w-full bg-slate-100 flex justify-evenly flex-wrap gap-y-2">
+
+       <div class="w-[50%] justify-center flex gap-x-2 items-center mt-3">
+        <i routerLink="/home" class="fa-solid fa-arrow-left bg-blue-500 hover:-translate-x-1 transition-transform cursor-pointer p-2 rounded-full text-white"></i>
+        <p routerLink="/home" class="cursor-pointer">Home</p>
+       </div>
+       
+       <div class="w-[50%]"></div>
+       
         <div class="flex justify-center md:w-[50%] w-full ">
             <img class="bg-blue-400 rounded-full" [src]="userData.photo" alt="">
         </div>
@@ -12,6 +20,7 @@
                 <p class="text-2xl">Name: {{userData.name}}</p>
                 <p class="text-2xl">Email: {{userData.email}}</p>
                 <p class="text-2xl">Gender: {{userData.gender}}</p>
+                <p routerLink="/changepassword" class="text-2xl underline text-blue-500 cursor-pointer">Change Passowrd?</p>
             
         </div>
 

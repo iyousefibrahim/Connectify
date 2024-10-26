@@ -7,11 +7,12 @@ import { UsersService } from '../../Core/Services/users.service';
 import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, AlertErrorComponent,RouterLink],
+  imports: [ReactiveFormsModule, AlertErrorComponent, RouterLink, NgClass],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -20,10 +21,10 @@ export class RegisterComponent implements OnDestroy {
   private readonly _UsersService = inject(UsersService);
   private readonly _Router = inject(Router);
   private readonly _ToastrService = inject(ToastrService);
-  unSubscribe: Subscription = new Subscription(); 
+  unSubscribe: Subscription = new Subscription();
 
-  isLoading : boolean = false;
-  errorMsg : string = "";
+  isLoading: boolean = false;
+  errorMsg: string = "";
 
   registerForm: FormGroup = this._FormBuilder.group({
     name: [null, RegisterValidator.name],
@@ -45,7 +46,7 @@ export class RegisterComponent implements OnDestroy {
             this._Router.navigate(['/login']);
           }, 2500);
         },
-        error:(err)=>{
+        error: (err) => {
           this.errorMsg = err.error.error;
           this.isLoading = false;
           this._ToastrService.error(this.errorMsg);

@@ -6,11 +6,12 @@ import { ToastrService } from 'ngx-toastr';
 import { RegisterValidator } from '../../Shared/Validators/register.validators';
 import { AlertErrorComponent } from "../../Shared/Ui/alert-error/alert-error.component";
 import { Subscription } from 'rxjs';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [AlertErrorComponent, ReactiveFormsModule,RouterLink],
+  imports: [AlertErrorComponent, ReactiveFormsModule, RouterLink, NgClass],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -20,10 +21,10 @@ export class LoginComponent implements OnDestroy {
   private readonly _Router = inject(Router);
   private readonly _ToastrService = inject(ToastrService);
 
-  unSubscribe: Subscription = new Subscription(); 
+  unSubscribe: Subscription = new Subscription();
   isLoading: boolean = false;
   errorMsg: string = "";
-  loginSuccess : string = "";
+  loginSuccess: string = "";
 
   loginForm: FormGroup = this._FormBuilder.group({
     email: [null, RegisterValidator.email],
@@ -33,7 +34,12 @@ export class LoginComponent implements OnDestroy {
   LoginSubmit() {
     if (this.loginForm.valid) {
       this.isLoading = true;
-      this.unSubscribe.add(this._UsersService.SignIn(this.loginForm.value).subscribe({
+      const email = this.loginForm.get('email')?.value.toLowerCase(); 
+        const loginData = { 
+            password : this.loginForm.get('password')?.value,
+            email 
+        };
+      this.unSubscribe.add(this._UsersService.SignIn(loginData).subscribe({
         next: (res) => {
           this.loginSuccess = res.message;
           this.isLoading = false;
