@@ -17,7 +17,7 @@
     </div>
 
     <div class="relative z-0 w-full group">
-        <input data-popover-target="popover-password" data-popover-placement="bottom-end" [ngClass]="{
+        <input [ngClass]="{
             'focus:border-red-600 , invalid:border-red-600': loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty),
             'focus:border-green-400 , valid:border-green-400': !loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)
         }" formControlName="password" type="password" name="floating_email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
@@ -28,33 +28,6 @@
         <app-alert-error [Form]="loginForm" FormControl="password"></app-alert-error>
     </div>
 
-    <div data-popover id="popover-password" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
-    <div class="p-3 space-y-2">
-            <h3 class="font-semibold text-gray-900 dark:text-white">Password Must have:</h3>
-            <ul>
-                <li class="flex items-center gap-x-2">
-                <i class="fa-solid fa-circle"></i>
-                   <p>At least one uppercase letter</p>
-                </li>
-                <li class="flex justify-center flex-col">
-                    <div class="flex items-center gap-x-2">
-                        <i class="fa-solid fa-circle"></i>
-                        <p>At least one one special character</p>
-                    </div>
-                   <p class="ms-5">(e.g., #?!&#64;$%^&*-)</p>
-                </li>
-                <li class="flex items-center gap-x-2">
-                <i class="fa-solid fa-circle"></i>
-                   <p>A longer password (min. 8 chars.)</p>
-                </li>
-                <li class="flex items-center gap-x-2">
-                <i class="fa-solid fa-circle"></i>
-                    <p>At least one digit</p>
-                </li>
-            </ul>
-    </div>
-    </div>
-    <div data-popper-arrow></div>
 
     
     @if(errorMsg && !loginSuccess){
