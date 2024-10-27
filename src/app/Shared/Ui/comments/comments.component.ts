@@ -24,8 +24,8 @@ export class CommentsComponent implements OnInit , OnDestroy {
     if(this.commentForm.valid){
       this.unSubscribe.add(this._CommentsService.CreateComment(this.commentForm.value).subscribe({
       next: (res) => {
+        this.commentForm.get('content')?.reset();
         this.commentData = res.comments;
-        this.commentForm.get("content")?.reset;
       }
     }));
     }
