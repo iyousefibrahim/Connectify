@@ -8,6 +8,7 @@ import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { NgClass } from '@angular/common';
+import { passwordMatchValidator } from '../../Shared/Utils/passwordmatch';
 
 @Component({
   selector: 'app-register',
@@ -34,7 +35,9 @@ export class RegisterComponent implements OnDestroy {
     rePassword: [null],
     dateOfBirth: [null, [Validators.required]],
     gender: [null, [Validators.required]]
-  }, { validators: [confirmPassword] });
+  }, { validators: [confirmPassword, passwordMatchValidator] });
+
+
 
   RegisterSubmit() {
     if (this.registerForm.valid) {
