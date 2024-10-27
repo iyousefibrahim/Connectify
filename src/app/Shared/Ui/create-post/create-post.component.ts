@@ -36,6 +36,8 @@ export class CreatePostComponent implements OnDestroy {
     this.unSubscribe.add(this._PostsService.CreatePost(formData).subscribe({
       next: (data) => {
         this._ToastrService.success("Your post has been successfully created!");
+        this.content = "";
+        delete this.savedFile;
       },
     }));
   }
