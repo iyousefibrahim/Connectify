@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { NavComponent } from "../nav/nav.component";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../../Core/Services/users.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { RegisterValidator } from '../../Shared/Validators/register.validators';
@@ -12,7 +12,7 @@ import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-change-password',
   standalone: true,
-  imports: [NavComponent, AlertErrorComponent,ReactiveFormsModule,NgClass],
+  imports: [NavComponent, AlertErrorComponent, ReactiveFormsModule, NgClass, RouterLink],
   templateUrl: './change-password.component.html',
   styleUrl: './change-password.component.scss'
 })
